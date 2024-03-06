@@ -242,7 +242,15 @@ namespace RepoZ.App.Win
 			var directoryName = Path.GetDirectoryName(fileName);
 
 			if (Directory.Exists(directoryName))
-				Process.Start(directoryName);
+			{
+				new Process
+				{
+					StartInfo = new ProcessStartInfo(directoryName)
+					{
+						UseShellExecute = true
+					}
+				}.Start();
+			}
 		}
 
 		private void UpdateButton_Click(object sender, RoutedEventArgs e)
@@ -269,7 +277,13 @@ namespace RepoZ.App.Win
 
 		private void Navigate(string url)
 		{
-			Process.Start(url);
+			new Process
+			{
+				StartInfo = new ProcessStartInfo(url)
+				{
+					UseShellExecute = true
+				}
+			}.Start();
 		}
 
 		private void PlaceFormByTaskbarLocation()
